@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Earthquake Insurance dApp</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@latest/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@latest/dist/Control.Geocoder.css" />
+
+	<script src="https://unpkg.com/leaflet@latest/dist/leaflet-src.js"></script>
+  <script src="js/leaflet-providers.js"></script>
+	<script src="https://unpkg.com/leaflet-control-geocoder@latest/dist/Control.Geocoder.js"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 1.7;
+		}
+    #container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 5%;
+      width: 90%;
+    }
+		#map {
+			height: 70%;
+      margin-bottom: 10px;
+		}
+    #coord {
+      padding-top: 10px;
+    }
+	</style>
+</head>
+<body>
+  <div id="container">
+  	<div id="map"></div>
+  	<script src = "js/map.js"></script>
+
+	<b>Your Ethereum Address: <a id="current_account"></a></b><br />
+    <h1>Create new Policy</h1>
+    <h2>Region:</h2>
+    Latitude: <input id="lat" disabled>
+    Longitude: <input id="lng" disabled><br />
+    Radius: <input id="radius" value="1000" size="4" maxlength="4"> (in km)<br />
+    <h2>Parameters:</h2>
+    Magnitude: <input id="magnitude" value="6.0" size="4" maxlength="10"> (or higher)<br />
+    <h2>Terms of Insurance</h2>
+    Amount: <input id="amount" type="text" value="2.75"> Ether<br />
+    Start Date: <input id="startdate" type="date" value="2010-01-01"> (backdating allowed for demo purposes)<br />
+    End Date: <input id="enddate" type="date" value="2020-12-31"><br />
+    Ethereum addresses of distributors/benefactors - <b>One per line:</b> <br />
+    <textarea id="addresses" rows="7" style="min-width: 30%"></textarea><br />
+    <input type="button" value="Create" id="create" />
+    <h1>View Policies:</h1>
+    <input type="button" value="Release Eligible Policies" id="release" /><br /><br />
+    <table width="90%" border="1" id="#policies">
+      <thead>
+        <td>Status</td>
+        <td>Insurer Address</td>
+        <td>Amount</td>
+        <td>Query URL</td>
+      </thead>
+	  <tbody id="rows">
+      </tbody>
+    </table>
+    <table style="display: None;">
+        <tr id="rowTemplate">
+            <td class="status"></td>
+            <td class="insurer"></td>
+            <td class="amount"></td>
+            <td><a class="url">View</a></td>
+        </tr>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
