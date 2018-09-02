@@ -47,24 +47,30 @@ $ npm install -g ethereum-bridge
 $ ganache-cli -b 5 -d -m "leopard short thing brick lumber artwork reveal pitch awful praise goose size"
 ```
 The pre-specified mnemonic allows us to use  Ganache alongside Oraclize, which requires deterministic addresses.
-`-b 5` sets the block time to 5 seconds (to help check dApp frontend updates).
+`-b 5` sets the block time to 5 seconds (to help the dApp frontend and Oraclize to catch up).
 
+**For testing, please remove `-b 5` otherwise it the tests will run very slowly.**
+```
+$ ganache-cli -d -m "leopard short thing brick lumber artwork reveal pitch awful praise goose size" # only for running truffle test
+```
 ## Run Ethereum-Bridge
 
 ```
 $ ethereum-bridge -H localhost:8545 -a 9 --dev
 ```
+This takes a little while, so wait for it to complete before proceeding. When it says `(Ctrl+C to exit)`, you can proceed.
+
 ## Compile and Deploy contracts using Truffle
 
 ```
 $ truffle compile
 $ truffle migrate
 ```
-After this, make sure to restart Metamask so that it picks up the new localhost RPC server. Make sure the remote server is set to `localhost:8545`
+After this, make sure to **restart Metamask** so that it picks up the new localhost RPC server. In order to do this, disable Metamask and re-enable it, and then click on it and enter the password. Make sure Metamask is connected to `localhost:8545` and you're logged in.
 
 ## And finally, run the local dev server (lite-server)
 
 ```
-$ npm start dev
+$ npm run dev
 ```
 And we should be good to go! If the browser does not automatically load the dApp, just visit http://localhost:3000

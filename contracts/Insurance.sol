@@ -102,7 +102,7 @@ contract Insurance is usingOraclize {
         delete queryIndexes[queryId];
     }
 
-    function release(uint index, State state) public {
+    function release(uint index, State state) {
         assert(state != State.PENDING);
         assert(state != State.REFUNDED);
         // Ensure that this function is only being called on PENDING policies
